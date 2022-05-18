@@ -82,7 +82,6 @@ export const listsSlice = createSlice({
                 state.owners.splice(ownerIndexAtId, 1)
             }
         }
-
     }
 })
 
