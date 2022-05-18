@@ -27,6 +27,7 @@ function PetModal({onSubmit, title, pet}) {
             ...prevState,
             id: pet.id || Date.now()
         }))
+        console.log(newPet)
         onSubmit(newPet)
         handleClose()
     }
@@ -97,7 +98,7 @@ function PetModal({onSubmit, title, pet}) {
                         options={ownerList}
                         onInputChange={(event) => setNewPet(prevState => ({
                             ...prevState,
-                            owner: event.target.textContext
+                            owner: event.target.textContent
                         }))}
                         loadingText="Loading list of owners"
                         renderInput={(params) => 
@@ -107,6 +108,7 @@ function PetModal({onSubmit, title, pet}) {
                                 margin="dense" 
                                 helperText="Choose Owner Name"
                                 fullWidth
+                                value={newPet.owner}
                             />
                         }
                     />

@@ -19,6 +19,7 @@ function PetList() {
     const pets = useSelector(state => state.lists.pets)
      
     const handleAddPet = pet => {
+        console.log(pet)
         dispatch(createPet({pet}))
     };
 

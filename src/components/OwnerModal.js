@@ -54,7 +54,7 @@ function OwnerModal({onSubmit, title, owner = {}}) {
                         margin="dense" 
                         helperText="Write Owner First Name"
                         fullWidth
-                        value={petOwner.firstName}
+                        value={petOwner.firstName || ""}
                         onChange={(event) => setPetOwner(prevState => ({
                             petOwner: {
                                 ...prevState.petOwner,
@@ -68,7 +68,7 @@ function OwnerModal({onSubmit, title, owner = {}}) {
                         margin="dense" 
                         helperText="Write Owner Last Name"
                         fullWidth
-                        value={petOwner.lastName}
+                        value={petOwner.lastName || ''}
                         onChange={(event) => setPetOwner(prevState => ({
                             petOwner: {
                                 ...prevState.petOwner,
@@ -93,6 +93,7 @@ function OwnerModal({onSubmit, title, owner = {}}) {
                                 margin="dense" 
                                 helperText="Choose Pet"
                                 fullWidth
+                                value={petOwner.pet}
                             />
                         }
                     />
