@@ -9,21 +9,23 @@ import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { createOwner, deleteOwner, updateOwner } from '../features/lists/listsSlice';
 
 function OwnerList() {
-    const owners = useSelector(state => state.owners)
+    const dispatch = useDispatch()
+    const owners = useSelector(state => state.lists.owners)
 
     const handleAddOwner = (owner) => {
-        store.createOwner(owner)
+        dispatch(createOwner({owner}))
     }
 
     const handleUpdateOwner = owner => {
-        store.updateOwner(owner.id, owner)
+        dispatch(updateOwner({ownerId: owner.id, update: owner}))
     }
 
     const handleDeleteOwner = owner => {
-        store.deleteOwner(owner.id)
+        dispatch(deleteOwner({ownerId: owner.id}))
     }
 
     const columns = [

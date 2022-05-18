@@ -12,18 +12,14 @@ const initialState = {
     ],
     owners: [
         {   
-            petOwner: {
-                firstName: 'Elijah',
-                lastName: 'Smith',
-            },              
+            firstName: 'Elijah',
+            lastName: 'Smith',            
             id: Date.now() + 3,
         },
         {   
-            petOwner: {
-                firstName: 'Joe',
-                lastName: 'Cohens',
-                pet: 'Lucy'
-            },                
+            firstName: 'Joe',
+            lastName: 'Cohens',
+            pet: 'Lucy',              
             id: Date.now() + 1,              
         }
     ]
