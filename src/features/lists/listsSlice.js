@@ -7,7 +7,8 @@ const initialState = {
             name: 'Lucy',
             breed: 'Pomeranian',
             type: 'Dog',
-            owner: 'Joe Cohens'
+            owner: 'Joe Cohens',
+            label: 'Lucy'
         }
     ],
     owners: [
