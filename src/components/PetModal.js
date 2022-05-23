@@ -6,8 +6,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from "@material-ui/core/TextField"
 import Button from '@mui/material/Button';
 import Autocomplete from '@mui/material/Autocomplete';
+import { useSelector } from 'react-redux';
 
-function PetModal({onSubmit, title, pet, ownerList}) {
+function PetModal({onSubmit, title, pet}) {
+    const ownerList = useSelector(state => state.lists.owners)
+
     const [open, setOpen] = useState(false)
     const [newPet, setNewPet] = useState({name: '', breed: '', type: '', owner: '', id: ''})
 
@@ -24,6 +27,7 @@ function PetModal({onSubmit, title, pet, ownerList}) {
             ...prevState,
             id: pet.id || Date.now()
         }))
+        console.log(newPet)
         onSubmit(newPet)
         handleClose()
     }
@@ -91,10 +95,10 @@ function PetModal({onSubmit, title, pet, ownerList}) {
                     />
                     <Autocomplete
                         disablePortal
-                        options={ownerList ? ownerList : []}
+                        options={ownerList}
                         onInputChange={(event) => setNewPet(prevState => ({
                             ...prevState,
-                            owner: event.target.textContext
+                            owner: event.target.textContent
                         }))}
                         loadingText="Loading list of owners"
                         renderInput={(params) => 
@@ -104,6 +108,7 @@ function PetModal({onSubmit, title, pet, ownerList}) {
                                 margin="dense" 
                                 helperText="Choose Owner Name"
                                 fullWidth
+                                value={newPet.owner}
                             />
                         }
                     />

@@ -9,23 +9,26 @@ import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { createPet, deletePet, updatePet } from '../features/lists/listsSlice';
 
 
 function PetList() {
-    const owners = useSelector(state => state.owners)
-    const pets = useSelector(state => state.pets)
+    const dispatch = useDispatch()
+    const owners = useSelector(state => state.lists.owners)
+    const pets = useSelector(state => state.lists.pets)
      
     const handleAddPet = pet => {
-        store.createPet(pet);
+        console.log(pet)
+        dispatch(createPet({pet}))
     };
 
     const handleUpdatePet = (pet) => {
-        store.updatePet(pet.id, pet)
+        dispatch(updatePet({petId: pet.id, update: pet}))
     }
 
     const handleDeletePet = (pet) => {
-        store.deletePet(pet.id)
+        dispatch(deletePet({petId: pet.id}))
     }
 
     const columns = [
@@ -76,7 +79,7 @@ function PetList() {
                                                         spacing={2}
                                                     >
                                                         <Button variant="outlined" onClick={() => handleDeletePet(row)}>Delete</Button>
-                                                        <PetModal onSubmit={handleUpdatePet} title='Update' pet={row} key={column.id} ownerList={store.owners}/>
+                                                        <PetModal onSubmit={handleUpdatePet} title='Update' pet={row} key={column.id} ownerList={owners}/>
                                                     </Stack>
                                                 </TableCell>
                                             )

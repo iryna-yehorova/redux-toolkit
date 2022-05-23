@@ -9,7 +9,7 @@ import Autocomplete from '@mui/material/Autocomplete'
 import { useSelector } from 'react-redux'
 
 function OwnerModal({onSubmit, title, owner = {}}) {
-    const pets = useSelector(state => state.pets)
+    const pets = useSelector(state => state.lists.pets)
 
     const [open, setOpen] = useState(false)
     const [petOwner, setPetOwner] = useState({id: '', firstName: '', lastName: '', pet: ''})

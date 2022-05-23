@@ -7,24 +7,23 @@ const initialState = {
             name: 'Lucy',
             breed: 'Pomeranian',
             type: 'Dog',
-            owner: 'Joe Cohens'
+            owner: 'Joe Cohens',
+            label: 'Lucy'
         }
     ],
     owners: [
         {   
-            petOwner: {
-                firstName: 'Elijah',
-                lastName: 'Smith',
-            },              
+            firstName: 'Elijah',
+            lastName: 'Smith',            
             id: Date.now() + 3,
+            label: 'Elijah Smith'
         },
         {   
-            petOwner: {
-                firstName: 'Joe',
-                lastName: 'Cohens',
-                pet: 'Lucy'
-            },                
-            id: Date.now() + 1,              
+            firstName: 'Joe',
+            lastName: 'Cohens',
+            pet: 'Lucy',              
+            id: Date.now() + 1,
+            label: 'Joe Cohens'              
         }
     ]
 }
@@ -39,8 +38,8 @@ export const listsSlice = createSlice({
             pet.label = pet.name
             pet.id = pet.id ? pet.id : Date.now()
 
-            if (pet.owner && this.owners && state.owners.length > 0) {
-                let owner = this.owners.find(o => o.label === pet.owner)
+            if (pet.owner) {
+                let owner = state.owners.find(o => o.label === pet.owner)
                 owner.pet = pet.name 
             }
 
@@ -65,7 +64,7 @@ export const listsSlice = createSlice({
             const newItem = {
                 ...owner.petOwner,
                 id: owner.id ? owner.id : Date.now(),
-                label: `${owner.petOwner.firstName} ${owner.petOwner.lastName}`
+                label: owner.petOwner ? `${owner.petOwner.firstName} ${owner.petOwner.lastName}` : `${owner.firstName} ${owner.lastName}`
             }
             state.owners.push(newItem)
         },
@@ -83,7 +82,6 @@ export const listsSlice = createSlice({
                 state.owners.splice(ownerIndexAtId, 1)
             }
         }
-
     }
 })
 
